@@ -6,6 +6,48 @@
 #include <Windows.h>
 
 
+int zadanie() {
+    int size, sum{};
+    printf("Введите размер матрицы: ");
+    scanf("%d", &size);
+
+
+    int** arr = (int**)malloc(size * sizeof(int*));
+    for (int i = 0; i < size; i++) {
+        arr[i] = (int*)malloc(size * sizeof(int));
+    }
+
+
+    for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            arr[i][j] = rand() % 2;
+            printf("%d ", arr[i][j]);
+        }
+        printf("\n");
+    }
+
+
+  
+            for (int i = 0; i < size; i++) {
+                for (int j = 0; j < i; j++) {
+                    sum += arr[i][j];
+                   // if (i == j)
+                     //   sum -= arr[i][j];
+                }
+            }
+    
+    printf("\n %d Сумма ниже диагонали\n", sum);
+
+    for (int i = 0; i < size; i++) {
+        free(arr[i]);
+    }
+    free(arr);
+
+    return 0;
+}
+
+
+
 int func1() {
     int mas[10] = { 10, 20, 11, 2, 3, 4, 5, 89, 1, 5 };
     int max = INT_MIN, min = INT_MAX;
@@ -89,17 +131,17 @@ int find_student(struct student students[], int size, const char* fam, const cha
         // Заполнение массива студентами
         strcpy(stud[0].famil, "Иванов");
         strcpy(stud[0].name, "Иван");
-        strcpy(stud[0].facult, "Математика");
+        strcpy(stud[0].facult, "ФВТ");
         stud[0].Nomzach = 123;
 
         strcpy(stud[1].famil, "Петров");
         strcpy(stud[1].name, "Пётр");
-        strcpy(stud[1].facult, "Физика");
+        strcpy(stud[1].facult, "ФВТ");
         stud[1].Nomzach = 456;
 
-        strcpy(stud[2].famil, "Сидоров");
-        strcpy(stud[2].name, "Сидор");
-        strcpy(stud[2].facult, "Химия");
+        strcpy(stud[2].famil, "Беглов");
+        strcpy(stud[2].name, "Иван");
+        strcpy(stud[2].facult, "ФВТ");
         stud[2].Nomzach = 789;
 
  
@@ -165,6 +207,9 @@ int main()
             break;
         case 5:
             func5();
+            break;
+        case 6:
+            zadanie();
             break;
         default:
             printf("Неверный выбор\n");
